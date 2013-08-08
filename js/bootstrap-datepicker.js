@@ -327,6 +327,7 @@
 		getFormattedDate: function(format) {
 			if (format === undefined)
 				format = this.o.format;
+
 			return DPGlobal.formatDate(this.date, format, this.o.language);
 		},
 
@@ -1162,6 +1163,8 @@
 			return date;
 		},
 		formatDate: function(date, format, language){
+			if (typeof date === 'string')
+				date = DPGlobal.parseDate(date, format, language);
 			if (typeof format === 'string')
 				format = DPGlobal.parseFormat(format);
 			var val = {
